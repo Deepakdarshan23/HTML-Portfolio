@@ -206,141 +206,30 @@
     });
 
     // Modal functionality
-    const projectSources = {
+    const projectFiles = {
       'tindog': {
-        html: `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TinDog - Deepak Darshan</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <link rel="stylesheet" href="tindog.css">
-</head>
-<body class="bg-gray-50 text-gray-900">
-  <!-- Full TinDog HTML content -->
-</body>
-</html>`,
-        css: `.gradient-background {
-  background: linear-gradient(300deg, #00bfff, #ff4c68, #ef8172);
-  background-size: 180% 180%;
-  animation: gradient-animation 18s ease infinite;
-}
-@keyframes gradient-animation {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-.icon-square {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 0.75rem;
-}
-.profile-img {
-  height: 100px;
-  border-radius: 50%;
-}
-body {
-  font-family: 'Poppins', sans-serif;
-  scroll-behavior: smooth;
-}
-.section-title {
-  @apply text-3xl font-bold mb-8 text-center;
-}
-.btn-primary {
-  @apply inline-block px-6 py-3 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition;
-}
-.card {
-  @apply bg-gray-50 rounded-lg shadow-md overflow-hidden;
-}`,
+        html: './projects/tindog.html',
+        css: './projects/tindog.css',
         link: './projects/tindog.html'
       },
       'movie-ranking': {
-        html: `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Movie Ranking - Deepak Darshan</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <link rel="stylesheet" href="movie-ranking.css">
-</head>
-<body class="bg-gray-50 text-gray-900">
-  <!-- Full Movie Ranking HTML content -->
-</body>
-</html>`,
-        css: `body {
-  font-family: 'Poppins', sans-serif;
-  scroll-behavior: smooth;
-}
-.movie-item {
-  @apply p-6 bg-gray-50 rounded-lg shadow-md mb-4;
-}`,
+        html: './projects/movie-ranking.html',
+        css: './projects/movie-ranking.css',
         link: './projects/movie-ranking.html'
       },
       'birthday-invite': {
-        html: `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Birthday Invite - Deepak Darshan</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <link rel="stylesheet" href="birthday-invite.css">
-</head>
-<body class="bg-gray-50 text-gray-900">
-  <!-- Full Birthday Invite HTML content -->
-</body>
-</html>`,
-        css: `body {
-  font-family: 'Poppins', sans-serif;
-  scroll-behavior: smooth;
-}
-.invite-img {
-  @apply w-full max-w-md rounded-lg shadow-md;
-}`,
+        html: './projects/birthday-invite.html',
+        css: './projects/birthday-invite.css',
         link: './projects/birthday-invite.html'
       },
       'memeposter': {
-        html: `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Motivational Meme Poster - Deepak Darshan</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <link rel="stylesheet" href="memeposter.css">
-</head>
-<body class="bg-black text-white">
-  <!-- Full Meme Poster HTML content -->
-</body>
-</html>`,
-        css: `body {
-  font-family: 'Libre Baskerville', serif;
-  scroll-behavior: smooth;
-}
-.poster {
-  @apply w-1/2 mx-auto mt-24 text-center;
-}
-.meme-img {
-  @apply w-full border-4 border-white;
-}
-h1 {
-  @apply uppercase text-4xl mt-4;
-}`,
+        html: './projects/memeposter.html',
+        css: './projects/memeposter.css',
         link: './projects/memeposter.html'
       }
     };
 
-    function showCode(project) {
+    async function showCode(project) {
       const modal = document.getElementById('codeModal');
       const htmlCode = document.getElementById('htmlCode');
       const cssCode = document.getElementById('cssCode');
@@ -348,19 +237,34 @@ h1 {
       const modalTitle = document.getElementById('modalTitle');
 
       modalTitle.textContent = `${project.charAt(0).toUpperCase() + project.slice(1)} Code`;
-      htmlCode.textContent = projectSources[project].html;
-      cssCode.textContent = projectSources[project].css;
-      projectLink.href = projectSources[project].link;
 
-      Prism.highlightAll();
-      modal.classList.add('show');
+      try {
+        // Fetch HTML content
+        const htmlResponse = await fetch(projectFiles[project].html);
+        if (!htmlResponse.ok) throw new Error('Failed to load HTML');
+        htmlCode.textContent = await htmlResponse.text();
 
-      gsap.from(modal.querySelector('.bg-white'), {
-        opacity: 0,
-        scale: 0.8,
-        duration: 0.5,
-        ease: 'power2.out'
-      });
+        // Fetch CSS content
+        const cssResponse = await fetch(projectFiles[project].css);
+        if (!cssResponse.ok) throw new Error('Failed to load CSS');
+        cssCode.textContent = await cssResponse.text();
+
+        projectLink.href = projectFiles[project].link;
+
+        Prism.highlightAll();
+        modal.classList.add('show');
+
+        gsap.from(modal.querySelector('.bg-white'), {
+          opacity: 0,
+          scale: 0.8,
+          duration: 0.5,
+          ease: 'power2.out'
+        });
+      } catch (error) {
+        console.error(error);
+        htmlCode.textContent = 'Error loading HTML content';
+        cssCode.textContent = 'Error loading CSS content';
+      }
     }
 
     function closeModal() {
