@@ -7,8 +7,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -29,13 +27,6 @@
     }
     .nav-link:hover::after {
       width: 100%;
-    }
-    #codeModal {
-      display: none;
-      background: rgba(0, 0, 0, 0.8);
-    }
-    #codeModal.show {
-      display: flex;
     }
   </style>
 </head>
@@ -71,7 +62,7 @@
           <div class="p-6">
             <h3 class="text-xl font-semibold mb-2">TinDog</h3>
             <p class="text-gray-600">A responsive landing page for dog lovers to connect.</p>
-            <button onclick="showCode('tindog')" class="text-blue-500 hover:underline mt-4 inline-block">View Project & Code</button>
+            <a href="./projects/tindog.html" class="text-blue-500 hover:underline mt-4 inline-block">View Project</a>
           </div>
         </div>
         <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden animate-section">
@@ -79,7 +70,7 @@
           <div class="p-6">
             <h3 class="text-xl font-semibold mb-2">Movie Ranking</h3>
             <p class="text-gray-600">A list of my top favorite movies with details.</p>
-            <button onclick="showCode('movie-ranking')" class="text-blue-500 hover:underline mt-4 inline-block">View Project & Code</button>
+            <a href="./projects/movie-ranking.html" class="text-blue-500 hover:underline mt-4 inline-block">View Project</a>
           </div>
         </div>
         <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden animate-section">
@@ -87,7 +78,7 @@
           <div class="p-6">
             <h3 class="text-xl font-semibold mb-2">Birthday Invite</h3>
             <p class="text-gray-600">A fun invitation page for my birthday party.</p>
-            <button onclick="showCode('birthday-invite')" class="text-blue-500 hover:underline mt-4 inline-block">View Project & Code</button>
+            <a href="./projects/birthday-invite.html" class="text-blue-500 hover:underline mt-4 inline-block">View Project</a>
           </div>
         </div>
         <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden animate-section">
@@ -95,7 +86,7 @@
           <div class="p-6">
             <h3 class="text-xl font-semibold mb-2">Motivational Meme</h3>
             <p class="text-gray-600">A humorous motivational poster with a meme.</p>
-            <button onclick="showCode('memeposter')" class="text-blue-500 hover:underline mt-4 inline-block">View Project & Code</button>
+            <a href="./projects/memeposter.html" class="text-blue-500 hover:underline mt-4 inline-block">View Project</a>
           </div>
         </div>
       </div>
@@ -153,21 +144,6 @@
     <p class="mb-0">© 2025 Deepak Darshan. All Rights Reserved.</p>
   </footer>
 
-  <!-- Code Modal -->
-  <div id="codeModal" class="fixed inset-0 items-center justify-center hidden z-50">
-    <div class="bg-white rounded-lg p-6 max-w-4xl w-full max-h-[80vh] overflow-auto">
-      <div class="flex justify-between items-center mb-4">
-        <h2 id="modalTitle" class="text-2xl font-bold">Project Code</h2>
-        <button onclick="closeModal()" class="text-gray-600 hover:text-gray-900 text-2xl">×</button>
-      </div>
-      <h3 class="text-lg font-semibold mb-2">HTML</h3>
-      <pre><code id="htmlCode" class="language-html"></code></pre>
-      <h3 class="text-lg font-semibold mb-2">CSS</h3>
-      <pre><code id="cssCode" class="language-css"></code></pre>
-      <a id="projectLink" href="#" class="inline-block px-6 py-3 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition mt-4">View Live Project</a>
-    </div>
-  </div>
-
   <script>
     // GSAP Animations
     gsap.registerPlugin(ScrollTrigger);
@@ -204,79 +180,6 @@
         gsap.to(card, { scale: 1, duration: 0.3, ease: "power2.out" });
       });
     });
-
-    // Modal functionality
-    const projectFiles = {
-      'tindog': {
-        html: './projects/tindog.html',
-        css: './projects/tindog.css',
-        link: './projects/tindog.html'
-      },
-      'movie-ranking': {
-        html: './projects/movie-ranking.html',
-        css: './projects/movie-ranking.css',
-        link: './projects/movie-ranking.html'
-      },
-      'birthday-invite': {
-        html: './projects/birthday-invite.html',
-        css: './projects/birthday-invite.css',
-        link: './projects/birthday-invite.html'
-      },
-      'memeposter': {
-        html: './projects/memeposter.html',
-        css: './projects/memeposter.css',
-        link: './projects/memeposter.html'
-      }
-    };
-
-    async function showCode(project) {
-      const modal = document.getElementById('codeModal');
-      const htmlCode = document.getElementById('htmlCode');
-      const cssCode = document.getElementById('cssCode');
-      const projectLink = document.getElementById('projectLink');
-      const modalTitle = document.getElementById('modalTitle');
-
-      modalTitle.textContent = `${project.charAt(0).toUpperCase() + project.slice(1)} Code`;
-
-      try {
-        // Fetch HTML content
-        const htmlResponse = await fetch(projectFiles[project].html);
-        if (!htmlResponse.ok) throw new Error('Failed to load HTML');
-        htmlCode.textContent = await htmlResponse.text();
-
-        // Fetch CSS content
-        const cssResponse = await fetch(projectFiles[project].css);
-        if (!cssResponse.ok) throw new Error('Failed to load CSS');
-        cssCode.textContent = await cssResponse.text();
-
-        projectLink.href = projectFiles[project].link;
-
-        Prism.highlightAll();
-        modal.classList.add('show');
-
-        gsap.from(modal.querySelector('.bg-white'), {
-          opacity: 0,
-          scale: 0.8,
-          duration: 0.5,
-          ease: 'power2.out'
-        });
-      } catch (error) {
-        console.error(error);
-        htmlCode.textContent = 'Error loading HTML content';
-        cssCode.textContent = 'Error loading CSS content';
-      }
-    }
-
-    function closeModal() {
-      const modal = document.getElementById('codeModal');
-      gsap.to(modal.querySelector('.bg-white'), {
-        opacity: 0,
-        scale: 0.8,
-        duration: 0.3,
-        ease: 'power2.in',
-        onComplete: () => modal.classList.remove('show')
-      });
-    }
   </script>
 </body>
 </html>
