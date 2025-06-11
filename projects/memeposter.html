@@ -2,38 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Motivation Meme</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Motivational Meme Poster - Deepak Darshan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="memeposter.css">
 </head>
-<body>
-  <style>
-    body {
-      background-color: black;
-    }
+<body class="bg-black text-white">
+  <!-- Navbar -->
+  <nav class="bg-black text-white py-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+      <a href="../index.html" class="text-xl font-bold">Deepak's Portfolio</a>
+    </div>
+  </nav>
 
-    h1 {
-      text-transform: uppercase;
-      font-size: 3rem;
-      text-align: center;
-    }
-    .poster {
-      width: 50%;
-      margin-left: 25%;
-      margin-top: 100px;
-      color: white;
-      font-family: "Libre Baskerville", serif;
-      text-align: center;
-    }
-    .daenerys {
-      border: 5px solid white;
-      width: 100%;
-    }
-  </style>
+  <!-- Meme Poster Section -->
+  <section id="meme-poster" class="py-20">
+    <div class="poster animate-hero">
+      <img src="https://raw.githubusercontent.com/Deepakdarshan23/HTML-Portfolio/main/assets/images/motivation_meme.png" alt="Daenerys with egg" class="meme-img mb-6">
+      <h1>That Special Moment</h1>
+      <p class="text-lg mt-4">When you find the perfect avocado at the beach</p>
+    </div>
+  </section>
 
-  <div class="poster">
-    <img class="daenerys" src="../assets/images/daenerys.jpeg" alt="daenerys with egg">
-    <h1>That Special Moment</h1>
-    <p>When you find the perfect avocado at the supermarket</p>
-  </div>
+  <!-- Footer -->
+  <footer class="bg-black text-white text-center py-4">
+    <p class="mb-0">© 2025 Deepak Darshan. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // GSAP Animations
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero animation
+    gsap.from(".animate-hero", {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: 'power2.out'
+    });
+
+    // Image animation
+    gsap.from('.meme-img', {
+      opacity: 0,
+      scale: 0.9,
+      duration: 1,
+      scrollTrigger: {
+        trigger: '.meme-img',
+        start: 'top 80%',
+        toggleActions: 'play none none reverse'
+      }
+    });
+  </script>
 </body>
 </html>
