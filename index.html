@@ -1,146 +1,378 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deepak Darshan's Portfolio</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!--link rel="stylesheet" href="./style.css"-->
-    <style>
-        body {
-            background-color: #1a1a1a;
-            color: #e0e0e0;
-        }
-
-        .navbar {
-            background-color: #2c2c2c;
-        }
-
-        .hero {
-            background: linear-gradient(135deg, #333333, #555555);
-        }
-
-        .card {
-            background-color: #2c2c2c;
-            color: #e0e0e0;
-            border: none;
-        }
-
-        .btn-outline-primary {
-            border-color: #e0e0e0;
-            color: #e0e0e0;
-        }
-
-        .btn-outline-primary:hover {
-            background-color: #e0e0e0;
-            color: #1a1a1a;
-        }
-
-        footer {
-            background-color: #2c2c2c;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deepak Darshan's Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: #3b82f6;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+  </style>
 </head>
+<body class="bg-gray-50 text-gray-900">
+  <!-- Navbar -->
+  <nav class="fixed top-0 w-full bg-white shadow-md z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+      <a href="#" class="text-xl font-bold text-gray-900">Deepak's Portfolio</a>
+      <div class="space-x-6">
+        <a href="#portfolio" class="nav-link text-gray-600 hover:text-blue-500">Projects</a>
+        <a href="#about" class="nav-link text-gray-600 hover:text-blue-500">About</a>
+        <a href="#contact" class="nav-link text-gray-600 hover:text-blue-500">Contact</a>
+      </div>
+    </div>
+  </nav>
 
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm fixed-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="#">Deepak's Portfolio</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#portfolio">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                </ul>
-            </div>
+  <!-- Hero Section -->
+  <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
+    <div class="text-center px-4">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4 animate-hero">Welcome to Deepak Darshan's Portfolio</h1>
+      <p class="text-lg sm:text-xl mb-6">Frontend Developer | Problem Solver | Tech Enthusiast</p>
+      <a href="#portfolio" class="inline-block px-6 py-3 bg-white text-blue-600 rounded-full font-semibold hover:bg-blue-100 transition">View My Work</a>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-8 text-center">My Projects</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden animate-section">
+          <img src="https://raw.githubusercontent.com/Deepakdarshan23/HTML-Portfolio/main/assets/images/tindog.png" alt="TinDog Project" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">TinDog</h3>
+            <p class="text-gray-600">A responsive landing page for dog lovers, built with HTML, CSS, and Bootstrap.</p>
+            <a href="./projects/tindog.html" class="text-blue-500 hover:underline mt-4 inline-block">View Project</a>
+          </div>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header class="hero text-center text-white d-flex align-items-center justify-content-center" style="height: 100vh;">
-        <div class="container">
-            <h1 class="display-4 fw-bold">Welcome to My Portfolio</h1>
-            <p class="lead">Web Developer | Problem Solver | Tech Enthusiast</p>
+        <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden animate-section">
+          <img src="https://raw.githubusercontent.com/Deepakdarshan23/HTML-Portfolio/main/assets/images/movie_ranking.png" alt="Movie Ranking" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Movie Ranking</h3>
+            <p class="text-gray-600">A list of my favorite movies, styled with HTML and CSS.</p>
+            <a href="./projects/movie-ranking.html" class="text-blue-500 hover:underline mt-4 inline-block">View Project</a>
+          </div>
         </div>
-    </header>
-
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="container py-5">
-        <h2 class="text-center fw-bold mb-5">My Projects</h2>
-        <div class="row g-4">
-            <div class="col-md-6 col-lg-3">
-                <div class="card shadow-sm">
-                    <img src="./assets/images/tindog.png" class="card-img-top" alt="TinDog Project">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">TinDog</h5>
-                        <p class="card-text">A responsive Bootstrap-based website for dog lovers.</p>
-                        <a href="./projects/tindog.html" class="btn btn-outline-primary">View Project</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card shadow-sm">
-                    <img src="./assets/images/movie_ranking.png" class="card-img-top" alt="Movie Ranking">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Movie Ranking</h5>
-                        <p class="card-text">A list of my favorite movies.</p>
-                        <a href="./projects/movie-ranking.html" class="btn btn-outline-primary">View Project</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card shadow-sm">
-                    <img src="./assets/images/birthday_invite.png" class="card-img-top" alt="Birthday Invite">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Birthday Invite</h5>
-                        <p class="card-text">A simple birthday invitation page.</p>
-                        <a href="./projects/birthday-invite.html" class="btn btn-outline-primary">View Project</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card shadow-sm">
-                    <img src="./assets/images/motivation_meme.png" class="card-img-top" alt="Meme Poster">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Motivational Meme Poster</h5>
-                        <p class="card-text">A simple motivation meme page.</p>
-                        <a href="./projects/memeposter.html" class="btn btn-outline-primary">View Project</a>
-                    </div>
-                </div>
-            </div>
+        <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden animate-section">
+          <img src="https://raw.githubusercontent.com/Deepakdarshan23/HTML-Portfolio/main/assets/images/birthday_invite.png" alt="Birthday Invite" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Birthday Invite</h3>
+            <p class="text-gray-600">A fun HTML invitation page for birthdays.</p>
+            <a href="./projects/birthday-invite.html" class="text-blue-500 hover:underline mt-4 inline-block">View Project</a>
+          </div>
         </div>
-    </section>
+        <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden animate-section">
+          <img src="https://raw.githubusercontent.com/Deepakdarshan23/HTML-Portfolio/main/assets/images/motivation_meme.png" alt="Meme Poster" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Motivational Meme Poster</h3>
+            <p class="text-gray-600">A minimal page with a motivational meme, built with HTML and CSS.</p>
+            <a href="./projects/memeposter.html" class="text-blue-500 hover:underline mt-4 inline-block">View Project</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- About Section -->
-    <section id="about" class="container text-center py-5">
-        <h2 class="fw-bold">About Me</h2>
-        <p>Hi, I'm Deepak Darshan, a passionate web developer skilled in Java, Python, HTML, CSS, JavaScript, and
-            ReactJS.</p>
-        <a href="./projects/about.html" class="btn btn-primary">Read More</a>
-    </section>
+  <!-- About Section -->
+  <section id="about" class="py-20 bg-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold mb-8">About Me</h2>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto animate-section">
+        Hi, I'm Deepak Darshan — a passionate frontend developer with hands-on experience in ReactJS, JavaScript, and web automation using RPA. I enjoy building intuitive UIs and solving real-world problems with code.
+      </p>
+      <a href="./projects/about.html" class="inline-block px-6 py-3 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition mt-4">Read More</a>
+    </div>
+  </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="container text-center py-5">
-        <h2 class="fw-bold">Contact Me</h2>
-        <p>Email: deepakdarshan1001@gmail.com</p>
+  <!-- Skills Section -->
+  <section id="skills" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-8 text-center">Skills</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 animate-section">
+        <div class="text-center">
+          <div class="text-4xl mb-2">⚛️</div>
+          <p>ReactJS</p>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl mb-2">📜</div>
+          <p>JavaScript</p>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl mb-2">🤖</div>
+          <p>RPA</p>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl mb-2">🌐</div>
+          <p>HTML/CSS</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 bg-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold mb-8">Contact Me</h2>
+      <div class="text-lg text-gray-600 max-w-3xl mx-auto animate-section">
+        <p>Email: <a href="mailto:deepakdarshan1001@gmail.com" class="text-blue-500 hover:underline">deepakdarshan1001@gmail.com</a></p>
         <p>Location: Chennai, India</p>
-        <a href="./projects/contact.html" class="btn btn-primary">Get in Touch</a>
-    </section>
+        <a href="./projects/contact.html" class="inline-block px-6 py-3 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition mt-4">Get in Touch</a>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="text-white text-center p-4 mt-5">
-        <p class="mb-0">&copy; 2025 Deepak Darshan. All Rights Reserved.</p>
-    </footer>
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white text-center py-4">
+    <p class="mb-0">© 2025 Deepak Darshan. All Rights Reserved.</p>
+  </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // GSAP Animations
+    gsap.registerPlugin(ScrollTrigger);
 
+    // Hero animation
+    gsap.from(".animate-hero", {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: "power2.out"
+    });
+
+    // Section animations
+    gsap.utils.toArray(".animate-section").forEach((section) => {
+      gsap.from(section, {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          end: "bottom 20%",
+         ୍
+
+System: <!-- GSAP Animations (continued) -->
+          toggleActions: "play none none reverse"
+        }
+      });
+    });
+
+    // Project card hover effect
+    gsap.utils.toArray(".animate-section .bg-gray-50").forEach((card) => {
+      card.addEventListener("mouseenter", () => {
+        gsap.to(card, { scale: 1.03, duration: 0.3, ease: "power2.out" });
+      });
+      card.addEventListener("mouseleave", () => {
+        gsap.to(card, { scale: 1, duration: 0.3 Ill continue to generate separate project files for each project, enhancing their UI with Tailwind CSS and animations with GSAP. I’ll ensure each project file is a complete, responsive HTML page with improved styling and subtle animations, maintaining a professional and minimalist aesthetic.
+
+#### 2. TinDog Project (`tindog.html`)
+The original `tindog.html` uses Bootstrap for a dog-themed landing page with sections like hero, features, testimonials, pricing, and call-to-action. I’ll convert it to Tailwind CSS, simplify the layout, and add GSAP animations for section transitions and button hovers.
+
+<xaiArtifact artifact_id="cd2029aa-52b2-466d-92d5-0cb8c84ea3dc" artifact_version_id="aeb903ed-7f00-4d15-9b62-e03ebbd09931" title="tindog.html" contentType="text/html">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TinDog - Dog Lovers App</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+    .section-title {
+      @apply text-3xl font-bold mb-8 text-center;
+    }
+    .btn-primary {
+      @apply inline-block px-6 py-3 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition;
+    }
+    .card {
+      @apply bg-gray-50 rounded-lg shadow-md overflow-hidden;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+  <!-- Hero Section -->
+  <section id="hero" class="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
+    <div class="text-center px-4 animate-hero">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4">TinDog</h1>
+      <p class="text-lg sm:text-xl mb-6">Find your furry friend a loving home</p>
+      <a href="#download" class="btn-primary">Get Started</a>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-title">Features</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-section">
+        <div class="card">
+          <img src="https://raw.githubusercontent.com/Deepakdarshan23/HTML-Portfolio/main/assets/images/iphone6.png" alt="Mobile App" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Mobile App</h3>
+            <p class="text-gray-600">Use our app on the go to find your perfect pet match.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://raw.githubusercontent.com/Deepakdarshan23/HTML-Portfolio/main/assets/images/dog-img.jpg" alt="Dog Profile" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Dog Profile</h3>
+            <p class="text-gray-600">Create a profile for your dog to find a loving home.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://raw.githubusercontent.com/Deepakdarshan23/HTML-Portfolio/main/assets/images/tindog.png" alt="Easy to Use" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Easy to Use</h3>
+            <p class="text-gray-600">Simple and intuitive interface for all users.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="py-20 bg-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-title">Testimonials</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-section">
+        <div class="card">
+          <div class="p-6">
+            <p class="text-gray-600">"TinDog helped me find a forever home for my puppy!"</p>
+            <p class="text-gray-500 mt-4">- John Doe</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="p-6">
+            <p class="text-gray-600">"The app is so easy to use and effective."</p>
+            <p class="text-gray-500 mt-4">- Jane Smith</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="p-6">
+            <p class="text-gray-600">"I found my best friend through TinDog!"</p>
+            <p class="text-gray-500 mt-4">- Bob Johnson</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-title">Pricing</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-section">
+        <div class="card">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Free</h3>
+            <p class="text-gray-600">$0 / month</p>
+            <ul class="text-gray-600 mt-4">
+              <li>Basic profile listing</li>
+              <li>Limited photo uploads</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Premium</h3>
+            <p class="text-gray-600">$9.99 / month</p>
+            <ul class="text-gray-600 mt-4">
+              <li>Unlimited photo uploads</li>
+              <li>Featured profile listing</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Pro</h3>
+            <p class="text-gray-600">$19.99 / month</p>
+            <ul class="text-gray-600 mt-4">
+              <li>Unlimited photo uploads</li>
+              <li>Featured profile listing</li>
+              <li>Priority support</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section id="download" class="py-20 bg-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="section-title animate-section">Download the App</h2>
+      <p class="text-lg text-gray-600 mb-6">Join the TinDog community today!</p>
+      <div class="flex justify-center space-x-4">
+        <a href="#" class="btn-primary">App Store</a>
+        <a href="#" class="btn-primary">Google Play</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white text-center py-4">
+    <p class="mb-0">© 2025 Deepak Darshan. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // GSAP Animations
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero animation
+    gsap.from(".animate-hero", {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: "power2.out"
+    });
+
+    // Section animations
+    gsap.utils.toArray(".animate-section").forEach((section) => {
+      gsap.from(section, {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse"
+        }
+      });
+    });
+
+    // Button hover effect
+    gsap.utils.toArray(".btn-primary").forEach((btn) => {
+      btn.addEventListener("mouseenter", () => {
+        gsap.to(btn, { scale: 1.05, duration: 0.3, ease: "power2.out" });
+      });
+      btn.addEventListener("mouseleave", () => {
+        gsap.to(btn, { scale: 1, duration: 0.3, ease: "power2.out" });
+      });
+    });
+  </script>
 </body>
-
 </html>
-
